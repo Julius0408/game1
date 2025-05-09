@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://7d6kohq0misf"]
+
+[ext_resource type="Script" uid="uid://d8canp5f1gux" path="res://scripts/boss_projectile.gd" id="1_6ienu"]
+[ext_resource type="Texture2D" uid="uid://bqy2rx66s66ru" path="res://resources/enemys/ghost/particle.png" id="1_h0i0c"]
+[ext_resource type="Texture2D" uid="uid://cmodshcfpxrc5" path="res://resources/light.png" id="3_2n0ct"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ienu"]
+atlas = ExtResource("1_h0i0c")
+region = Rect2(0, 0, 15, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n0ct"]
+atlas = ExtResource("1_h0i0c")
+region = Rect2(15, 0, 15, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnfp1"]
+atlas = ExtResource("1_h0i0c")
+region = Rect2(30, 0, 15, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vukqs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ienu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n0ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnfp1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5fku"]
+radius = 5.0
+
+[node name="BossProjectile" type="Area2D"]
+script = ExtResource("1_6ienu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_vukqs")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c5fku")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+energy = 0.2
+texture = ExtResource("3_2n0ct")
+texture_scale = 0.2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

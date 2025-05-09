@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmcquvn42og4c"]
+
+[ext_resource type="Script" uid="uid://du75em36w07t0" path="res://scripts/soul_particle_display.gd" id="1_t15qx"]
+
+[node name="SoulParticleDisplay" type="Node2D"]
+script = ExtResource("1_t15qx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 24.0
+alignment = 1

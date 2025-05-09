@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://v2jo0rqbkk3n"]
+
+[ext_resource type="Script" uid="uid://b2onyfb1ucqqd" path="res://scripts/boss_forbitten_area.gd" id="1_jf6ht"]
+
+[node name="BossForbittenArea" type="Area2D"]
+script = ExtResource("1_jf6ht")

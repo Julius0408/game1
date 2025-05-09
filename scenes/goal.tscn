@@ -1,0 +1,227 @@
+[gd_scene load_steps=23 format=3 uid="uid://dtr7qkoxitw87"]
+
+[ext_resource type="Texture2D" uid="uid://cgf2nhh4tikw4" path="res://resources/items/goal/End (Pressed) (64x64).png" id="1_sx1j4"]
+[ext_resource type="Script" uid="uid://djvbo55gtl78s" path="res://scripts/goal.gd" id="1_w3gav"]
+[ext_resource type="Texture2D" uid="uid://casmmhirkoim8" path="res://resources/items/goal/End (Idle).png" id="2_w3gav"]
+[ext_resource type="Texture2D" uid="uid://c46fpxx5jxh2j" path="res://resources/Confetti (16x16).png" id="4_jvyg3"]
+[ext_resource type="AudioStream" uid="uid://e7hlonmawyld" path="res://resources/audio/level-win-6416.mp3" id="5_aqdrf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jvyg3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqdrf"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo0vh"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc8po"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s262x"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71tl1"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uikie"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d623h"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5wru"]
+atlas = ExtResource("1_sx1j4")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2tju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqdrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo0vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc8po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s262x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71tl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uikie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d623h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5wru")
+}],
+"loop": false,
+"name": &"activated",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w3gav")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2tju"]
+atlas = ExtResource("4_jvyg3")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jvyg3"]
+load_path = "res://.godot/imported/Confetti (16x16).png-20cb147eef560794ca2f66d08107f5e6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odvaq"]
+atlas = SubResource("CompressedTexture2D_jvyg3")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aqdrf"]
+load_path = "res://.godot/imported/Confetti (16x16).png-20cb147eef560794ca2f66d08107f5e6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikgl7"]
+atlas = SubResource("CompressedTexture2D_aqdrf")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taavj"]
+atlas = ExtResource("4_jvyg3")
+region = Rect2(64, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh8s8"]
+atlas = ExtResource("4_jvyg3")
+region = Rect2(80, 0, 8, 8)
+
+[node name="Goal" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_w3gav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_jvyg3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_k2tju")
+animation = &"activated"
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -40)
+emitting = false
+amount = 64
+texture = SubResource("AtlasTexture_k2tju")
+lifetime = 3.4
+one_shot = true
+explosiveness = 0.67
+randomness = 0.44
+lifetime_randomness = 0.46
+local_coords = true
+direction = Vector2(0, -1)
+spread = 32.27
+gravity = Vector2(0, 200)
+initial_velocity_min = 292.93
+initial_velocity_max = 323.23
+angular_velocity_min = 101.82
+angular_velocity_max = 101.82
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(0, -40)
+emitting = false
+amount = 64
+texture = SubResource("AtlasTexture_odvaq")
+lifetime = 3.4
+one_shot = true
+explosiveness = 0.67
+randomness = 0.44
+lifetime_randomness = 0.46
+local_coords = true
+direction = Vector2(0, -1)
+spread = 32.27
+gravity = Vector2(0, 200)
+initial_velocity_min = 292.93
+initial_velocity_max = 333.33
+angular_velocity_min = 101.82
+angular_velocity_max = 101.82
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2(0, -40)
+emitting = false
+amount = 64
+texture = SubResource("AtlasTexture_ikgl7")
+lifetime = 3.4
+one_shot = true
+explosiveness = 0.67
+randomness = 0.44
+lifetime_randomness = 0.46
+local_coords = true
+direction = Vector2(0, -1)
+spread = 32.27
+gravity = Vector2(0, 200)
+initial_velocity_min = 292.93
+initial_velocity_max = 353.54
+angular_velocity_min = 101.82
+angular_velocity_max = 101.82
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+position = Vector2(0, -40)
+emitting = false
+amount = 64
+texture = SubResource("AtlasTexture_taavj")
+lifetime = 3.4
+one_shot = true
+explosiveness = 0.67
+randomness = 0.44
+lifetime_randomness = 0.46
+local_coords = true
+direction = Vector2(0, -1)
+spread = 32.27
+gravity = Vector2(0, 200)
+initial_velocity_min = 292.93
+initial_velocity_max = 343.44
+angular_velocity_min = 101.82
+angular_velocity_max = 101.82
+
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
+position = Vector2(0, -40)
+emitting = false
+amount = 64
+texture = SubResource("AtlasTexture_wh8s8")
+lifetime = 3.4
+one_shot = true
+explosiveness = 0.67
+randomness = 0.44
+lifetime_randomness = 0.46
+local_coords = true
+direction = Vector2(0, -1)
+spread = 32.27
+gravity = Vector2(0, 200)
+initial_velocity_min = 252.52
+initial_velocity_max = 323.23
+angular_velocity_min = 101.82
+angular_velocity_max = 101.82
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aqdrf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

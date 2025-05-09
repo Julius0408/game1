@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwg75w03ifcy7"]
+
+[ext_resource type="Script" uid="uid://prh37ms31i2q" path="res://scripts/portal_entry.gd" id="1_6linw"]
+[ext_resource type="Texture2D" uid="uid://c0swbvlxej1of" path="res://resources/items/Purple Portal Sprite Sheet.png" id="1_vs81e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6linw"]
+size = Vector2(14, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq3im"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_benc7"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7dqv"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjdsj"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xidyl"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_836p7"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f1cm"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbfmy"]
+atlas = ExtResource("1_vs81e")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_excus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq3im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_benc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7dqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjdsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xidyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_836p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0f1cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbfmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="PortalEntry" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6linw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(0.99694, 1)
+shape = SubResource("RectangleShape2D_6linw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_excus")
+autoplay = "default"
+frame_progress = 0.267294
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

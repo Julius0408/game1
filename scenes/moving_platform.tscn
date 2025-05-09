@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4e30k0pqygvp"]
+
+[ext_resource type="Script" uid="uid://28prfx6cy0xk" path="res://scripts/moving_platform.gd" id="1_1tdcd"]
+[ext_resource type="Texture2D" uid="uid://b077dh8j1kgqp" path="res://resources/items/falling_platform.png" id="2_mb26n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tdcd"]
+size = Vector2(32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afg43"]
+atlas = ExtResource("2_mb26n")
+region = Rect2(0, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgg5x"]
+atlas = ExtResource("2_mb26n")
+region = Rect2(32, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20ojx"]
+atlas = ExtResource("2_mb26n")
+region = Rect2(64, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st7sd"]
+atlas = ExtResource("2_mb26n")
+region = Rect2(96, 0, 32, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gpe1g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afg43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgg5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ojx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st7sd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb26n"]
+size = Vector2(32, 3)
+
+[node name="MovingPlatform" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_1tdcd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_1tdcd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gpe1g")
+autoplay = "default"
+frame_progress = 0.0608737
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_mb26n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
